@@ -18,5 +18,5 @@ from django.contrib import admin
 from ask.qa.views import test
 
 urlpatterns = [
-    url(r'^', test),
+    url(r'^', include('qa.urls')),
 ]
