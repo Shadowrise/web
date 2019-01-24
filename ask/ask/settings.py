@@ -26,7 +26,7 @@ SECRET_KEY = '(m#*y-)m8w38$(!4)9+md%y)nbnstckr*vy99@%x4c^dr5=i#w'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    u'backend',
+    '*',
 ]
 
 
