@@ -2,5 +2,26 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Question(models.Model):
+  objects = QuestionManager()
+  title = models.CharField(max_length=255)
+  text = models.TextFeild()
+  added_at = models.DateTiemField(blank=True)
+  rating = models.IntegerField()
+  author = models.OneToOneField(User)
+  likes = models.OneToManyField(User)
+
+class QuestionManager(models.Manager):                                          
+  def new(self):
+    return self.order_by('-added_at')
+  def popular(self):
+    return self.order_by('-rating')
+  
+class Answer(models.Model):
+  text = models.TextFeild()
+  added_at = models.DateTiemField(blank=True)
+  question = models.OneToOneField(Question)
+  author = models.OneToOneField(User)
+  
