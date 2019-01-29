@@ -13,15 +13,15 @@ class QuestionManager(models.Manager):
 class Question(models.Model):
   objects = QuestionManager()
   title = models.CharField(max_length=255)
-  text = models.TextFeild()
-  added_at = models.DateTiemField(blank=True)
+  text = models.TextField()
+  added_at = models.DateTimeField(blank=True)
   rating = models.IntegerField()
   author = models.OneToOneField(User)
   likes = models.OneToManyField(User)
  
 class Answer(models.Model):
-  text = models.TextFeild()
-  added_at = models.DateTiemField(blank=True)
+  text = models.TextField()
+  added_at = models.DateTimeField(blank=True)
   question = models.OneToOneField(Question)
   author = models.OneToOneField(User)
   
