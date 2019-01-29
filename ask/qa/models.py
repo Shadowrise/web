@@ -17,7 +17,7 @@ class Question(models.Model):
   added_at = models.DateTimeField(blank=True)
   rating = models.IntegerField()
   author = models.OneToOneField(User)
-  likes = models.OneToManyField(User)
+  likes = models.ManyToManyField(User)
  
 class Answer(models.Model):
   text = models.TextField()
