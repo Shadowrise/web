@@ -29,7 +29,6 @@ def new(request):
     page = paginate(request, qs)    
     data = {
         'questions': page.object_list,
-        'paginator': paginator,
         'page': page,
     }
     return render(request, 'qa/new.html', data)
