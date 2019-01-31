@@ -3,6 +3,6 @@
 {% block content %}
 <h2>New questions</h2>
 {% for p in page.paginator.page_range %} 
-<b>title: {{ p.title }}</b> <a href="{{ paginator.baseurl }}{{ p.number }}">link</a>
+<b>title: {{ p.title }}</b> <a href="{{ p.paginator.baseurl }}{{ p.number }}">link</a>
 {% endfor %}
 {% endblock content %}
