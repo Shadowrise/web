@@ -18,6 +18,12 @@ class Question(models.Model):
   rating = models.IntegerField(default=0)
   author = models.OneToOneField(User, related_name="author")
   likes = models.ManyToManyField(User, related_name="likes")
+  
+  def get_url(self):
+    return '/question/' + self.id
+  
+  def __unicode__(self):
+      return self.id
  
 class Answer(models.Model):
   text = models.TextField()
