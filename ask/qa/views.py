@@ -36,6 +36,6 @@ def new(request):
 def popular(request):
     return HttpResponse('')
 
-def one(request, question_id):
+def one(request, id):
     return HttpResponse('')
 
