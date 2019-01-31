@@ -20,10 +20,10 @@ class Question(models.Model):
   likes = models.ManyToManyField(User, related_name="likes")
   
   def get_url(self):
-    return '/question/' + self.id
+    return '/question/' + str(self.id)
   
   def __unicode__(self):
-      return self.id
+      return str(self.id)
  
 class Answer(models.Model):
   text = models.TextField()
