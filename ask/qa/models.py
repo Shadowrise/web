@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class QuestionManager(models.Manager):                                          
   def new(self):
-    return self.order_by('-question_id')
+    return self.order_by('-id')
   def popular(self):
     return self.order_by('-rating')
 
