@@ -18,6 +18,8 @@ def paginate(request, qs):
         raise Http404        
         
     paginator = Paginator(qs, limit)
+    paginator.baseurl = '/question/'
+    
     try:
         page = paginator.page(page)
     except EmptyPage:
