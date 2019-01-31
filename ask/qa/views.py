@@ -30,7 +30,7 @@ def new(request):
         'paginator': paginator,
         'page': page,
     }
-    return render(request, 'new.html', data)
+    return render(request, 'qa/new.html', data)
 
 def popular(request):
     return HttpResponse('')
