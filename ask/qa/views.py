@@ -23,7 +23,7 @@ def paginate(request, qs):
     return page
 
 def new(request):
-    qs = Question.objects.all()
+    qs = Question.objects.new()
     page = paginate(request, qs)    
     data = {
         'questions': page.object_list,
