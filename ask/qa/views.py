@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404 
 from django.core.paginator import Paginator, EmptyPage
-from django.core.exceptions import ValueError
+'from django.core.exceptions import ValueError
 from django.shortcuts import render
 
 def paginate(request, qs):
