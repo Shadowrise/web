@@ -31,7 +31,7 @@ def new(request):
         'questions': page.object_list,
         'page': page,
     }
-    return render(request, 'qa/new.html', data)
+    return render(request, 'new.html', data)
 
 def popular(request):
     return HttpResponse('')
