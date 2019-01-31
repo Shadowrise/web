@@ -6,7 +6,7 @@ from django.shortcuts import render
 def paginate(request, qs):
     try:
         limit = int(request.GET.get('limit', 10))
-     except ValueError:
+    except ValueError:
         raise Http404
      
     if limit > 100:
