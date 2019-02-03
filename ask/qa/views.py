@@ -18,7 +18,7 @@ def paginate(request, qs):
         raise Http404        
         
     paginator = Paginator(qs, limit)
-    paginator.baseurl = '/question/'
+    paginator.baseurl = '/?page='
     
     try:
         page = paginator.page(page)
