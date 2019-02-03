@@ -7,6 +7,7 @@
 {% for a in question.answer_set.all %}
 <h4>Answer {{ a.id }}: {{ a.text }}</h4>
 {% endfor %}
+<h3>Add answer</h3>
 <form action="/answer/" method="post">
 {% csrf_token %}
 {{ answer_form.as_table }}
