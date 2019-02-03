@@ -5,7 +5,7 @@
 {% for p in page.paginator.page_range %} 
 <a href="{{ p.paginator.baseurl }}{{ p }}">{{ p }}</a>
 {% endfor %}
-<h2>New questions (count {{ questions.count }})</h2>
+<h2>{{ title }} (count {{ questions.count }})</h2>
 {% for q in questions %}
 <h3>title: {{ q.title }}</h3>
 <a href="{{ q.get_url }}{{ q }}">link</a>
