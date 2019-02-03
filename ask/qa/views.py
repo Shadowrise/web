@@ -47,7 +47,11 @@ def popular(request):
     return render(request, 'questions.html', data)
 
 def one(request, id):
-    question = Question.objects.get(id=id)
+    try:
+        question = Question.objects.get(id=id)
+    except Post.DoesNotExist:
+        raise Http404
+            
     data = {
         'question': question,
     }
