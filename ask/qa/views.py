@@ -59,10 +59,12 @@ def one(request, id):
         if form.is_valid():
             answer = form.save()            
             return HttpResponseRedirect(question.get_url())
-    else:            
+    else:
+        answer_form = AnswerForm()
+        answer_form.data['question'] = id
         data = {
             'question': question,
-            'answer_form': AnswerForm()
+            'answer_form': answer_form
         }
         return render(request, 'question.html', data)
 
