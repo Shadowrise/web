@@ -12,18 +12,14 @@ class AskForm(forms.Form):
   
 class AnswerForm(forms.Form):
   
-  def __init__(self, question, *args, **kwargs):
-    self._question = question
-    super(AnswerForm, self).__init__(*args, **kwargs)
-    
-  def __init__(self, *args, **kwargs):
-    super(AnswerForm, self).__init__(*args, **kwargs)
-    
   text = forms.CharField(widget=forms.Textarea)
   question = forms.IntegerField()
   
+  def clean_question(self):
+    question_id = self.cleaned_data['question']
+    return Question.objects.get(id=int(question_id))
+  
   def save(self):
-    self.cleaned_data['question'] = self._question
     answer = Answer(**self.cleaned_data)
     answer.save()
     return answer
