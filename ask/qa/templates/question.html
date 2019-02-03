@@ -8,7 +8,7 @@
 <h4>Answer {{ a.id }}: {{ a.text }}</h4>
 {% endfor %}
 <h3>Add answer</h3>
-<form action="/question/{{ question.id }}" method="post">
+<form action="/question/{{ question.id }}/" method="post">
 {% csrf_token %}
 {{ answer_form.as_table }}
 <input type="submit" value="Submit">
