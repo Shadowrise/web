@@ -1,0 +1,2 @@
+GRANT ALL PRIVILEGES ON *.* TO 'box'@localhost' IDENTIFIED BY '';
+CREATE DATABASE mydb;
