@@ -49,7 +49,7 @@ def popular(request):
 def one(request, id):
     try:
         question = Question.objects.get(id=id)
-    except Post.DoesNotExist:
+    except Question.DoesNotExist:
         raise Http404
             
     data = {
