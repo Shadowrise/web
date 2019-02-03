@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect 
 from django.core.paginator import Paginator, EmptyPage
 from qa.models import Question
+from qa.forms import AskForm, AnswerForm
 from django.shortcuts import render
 
 def paginate(request, qs):
@@ -57,7 +58,7 @@ def one(request, id):
     }
     return render(request, 'question.html', data)
 
-def ask(request)
+def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
