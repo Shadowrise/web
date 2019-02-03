@@ -3,7 +3,7 @@ from qa.models import Question, Answer
 
 class AskForm(forms.Form):
   title = forms.CharField(max_length=100)
-  text = forms.CharField(widget=forms.Textarea)
+  text = forms.CharField(widget=forms.Textarea, required = False)
   
   def save(self):
     question = Question(**self.cleaned_data)
@@ -11,7 +11,7 @@ class AskForm(forms.Form):
     return question
   
 class AnswerForm(forms.Form):  
-  text = forms.CharField(widget=forms.Textarea)
+  text = forms.CharField(widget=forms.Textarea, required = False)
   question = forms.IntegerField()
   
   def clean_question(self):
