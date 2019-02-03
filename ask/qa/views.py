@@ -32,12 +32,24 @@ def new(request):
     data = {
         'questions': page.object_list,
         'page': page,
+        'title': 'New questions',
     }
-    return render(request, 'new.html', data)
+    return render(request, 'questions.html', data)
 
 def popular(request):
-    return HttpResponse('')
+    qs = Question.objects.popular()
+    page = paginate(request, qs)    
+    data = {
+        'questions': page.object_list,
+        'page': page,
+        'title': 'Popular questions',
+    }
+    return render(request, 'questions.html', data)
 
 def one(request, id):
-    return HttpResponse('')
+    question = Question.objects.get(id=id)
+    data = {
+        'question': question,
+    }
+    return render(request, 'question.html', data)
 
