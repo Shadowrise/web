@@ -56,8 +56,8 @@ def one(request, id):
     
     if request.method == "POST":
         answer_form = AnswerForm(request.POST)
-        if form.is_valid():
-            form.save()            
+        if answer_form.is_valid():
+            answer_form.save()            
             return HttpResponseRedirect(question.get_url())
     else:
         answer_form = AnswerForm({'question': id})
