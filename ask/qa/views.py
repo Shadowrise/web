@@ -54,7 +54,7 @@ def one(request, id):
             answer = form.save()
             question = Question.objects.get(id=id)
             return HttpResponseRedirect(question.get_url())
-    else
+    else:
         try:
             question = Question.objects.get(id=id)
         except Question.DoesNotExist:
