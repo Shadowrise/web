@@ -55,17 +55,18 @@ def one(request, id):
         raise Http404
     
     if request.method == "POST":
-        form = AnswerForm(request.POST)
+        answer_form = AnswerForm(request.POST)
         if form.is_valid():
-            answer = form.save()            
+            form.save()            
             return HttpResponseRedirect(question.get_url())
     else:
         answer_form = AnswerForm({'question': id})
-        data = {
-            'question': question,
-            'answer_form': answer_form
-        }
-        return render(request, 'question.html', data)
+        
+    data = {
+        'question': question,
+        'answer_form': answer_form
+    }
+    return render(request, 'question.html', data)
 
 def ask(request):
     if request.method == "POST":
