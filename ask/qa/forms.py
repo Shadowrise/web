@@ -5,9 +5,9 @@ class AskForm(forms.Form):
   text = forms.CharField(widget=forms.Textarea)
   
   def save(self):
-    ask = Ask(**self.cleaned_data)
-    ask.save()
-    return ask
+    question = Question(**self.cleaned_data)
+    question.save()
+    return question
   
 class AnswerForm(forms.Form):
   title = forms.CharField(max_length=100)
