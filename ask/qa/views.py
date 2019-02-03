@@ -48,15 +48,23 @@ def popular(request):
     return render(request, 'questions.html', data)
 
 def one(request, id):
-    try:
-        question = Question.objects.get(id=id)
-    except Question.DoesNotExist:
-        raise Http404
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save()
+            question = Question.objects.get(id=id)
+            return HttpResponseRedirect(question.get_url())
+    else
+        try:
+            question = Question.objects.get(id=id)
+        except Question.DoesNotExist:
+            raise Http404
             
-    data = {
-        'question': question,
-    }
-    return render(request, 'question.html', data)
+        data = {
+            'question': question,
+            answer_form = AnswerForm()
+        }
+        return render(request, 'question.html', data)
 
 def ask(request):
     if request.method == "POST":
