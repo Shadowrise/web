@@ -62,7 +62,7 @@ def one(request, id):
             
         data = {
             'question': question,
-            answer_form = AnswerForm()
+            'answer_form': AnswerForm()
         }
         return render(request, 'question.html', data)
 
