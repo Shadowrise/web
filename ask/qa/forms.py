@@ -14,7 +14,7 @@ class AnswerForm(forms.Form):
   
   def __init__(self, question, *args, **kwargs):
     self._question = question
-    super(AnswerForm, self).__init__(*args, *kwargs)
+    super(AnswerForm, self).__init__(*args, **kwargs)
     
   text = forms.CharField(widget=forms.Textarea)
   #question = forms.IntegerField()
