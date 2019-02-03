@@ -4,7 +4,7 @@
 <h2>One question</h2>
 <h3>title: {{ question.title }}</h3>
 <h3>text: {{ question.text }}</h3>
-{% for a in question.answers.all %}
+{% for a in question.answers_set.all %}
 <h4>Answer {{ a.id }}: {{ a.text }}</h4>
 {% endfor %}
 {% endblock content %}
