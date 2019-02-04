@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 class QuestionManager(models.Manager):                                          
   def new(self):
@@ -30,4 +31,23 @@ class Answer(models.Model):
   added_at = models.DateTimeField(auto_now_add=True)
   question = models.ForeignKey(Question, related_name='answer_set')
   author = models.ForeignKey(User, null=True)
+
+def login(username,password):
+  try:
+    user = User.objects.get(username=username)
+  except User.DoesNotExist:
+    return false
+  if user.check_password(password):
+    return false
+  user = authenticate(username=username, password=password)
+  if user is None:
+    return false
+  return true
+  
+def signup(username,email,password):
+  if User.objects.filter(username=username).exists():
+    return false
+  user = User.objects.create_user(username,email,password)
+  user.save()
+  return login(username,password)
   
