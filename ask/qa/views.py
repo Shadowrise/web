@@ -1,7 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect 
 from django.core.paginator import Paginator, EmptyPage
-from qa.models import Question
-from qa.forms import AskForm, AnswerForm
+from qa.models import Question, signup, login
+from qa.forms import AskForm, AnswerForm, SingupForm, LoginForm
 from django.shortcuts import render
 
 def paginate(request, qs):
@@ -78,3 +78,27 @@ def ask(request):
     else:
         form = AskForm()
     return render(request, 'ask.html', { 'form': form })
+
+def signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        sessid = signup(form.username, form.email, form.password)
+        if sessid:
+            response = HttpResponseRedirect('/')
+            response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
+            return response
+        else
+            error = u'Signup failed'
+     return render(request, 'signup.html', {'error' : error, 'form' : SignupForm()})
+
+def signup(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        sessid = login(form.username, form.password)
+        if sessid:
+            response = HttpResponseRedirect('/')
+            response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
+            return response
+        else
+            error = u'Incorrect login/pass'
+     return render(request, 'login.html', {'error' : error, 'form' : LoginForm()})
