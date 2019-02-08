@@ -105,7 +105,7 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        result = m_login(username, password)
+        result = m_login(request, username, password)
         if result.success:
             response = HttpResponseRedirect('/')
             response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
