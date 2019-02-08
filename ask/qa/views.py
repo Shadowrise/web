@@ -80,25 +80,30 @@ def ask(request):
     return render(request, 'ask.html', { 'form': form })
 
 def signup(request):
+    error = ''
     if request.method == "POST":
-        form = SignupForm(request.POST)
-        sessid = signup(form.username, form.email, form.password)
+        username = request.POST.Get('username')
+        email = request.POST.Get('email')
+        password = request.POST.Get('password')
+        sessid = signup(username, email, password)
         if sessid:
             response = HttpResponseRedirect('/')
             response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
             return response
         else:
             error = u'Signup failed'
-    return render(request, 'signup.html', {'error' : '', 'form' : SignupForm()})
+    return render(request, 'signup.html', {'username' : username, 'email' : email, 'password' : password})
 
 def login(request):
+    error = ''
     if request.method == "POST":
-        form = LoginForm(request.POST)
-        sessid = login(form.username, form.password)
+        username = request.POST.Get('username')
+        password = request.POST.Get('password')
+        sessid = login(username, password)
         if sessid:
             response = HttpResponseRedirect('/')
             response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
             return response
         else:
             error = u'Incorrect login/pass'
-    return render(request, 'login.html', {'error' : '', 'form' : LoginForm()})
+    return render(request, 'login.html', {'username' : username, 'password' : password})
