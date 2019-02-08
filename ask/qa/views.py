@@ -95,7 +95,7 @@ def signup(request):
             return response
         else:
             error = u'Signup failed'
-    return render(request, 'signup.html', {'username' : username, 'email' : email, 'password' : password})
+    return render(request, 'signup.html', {'error' : error, 'username' : username, 'email' : email, 'password' : password})
 
 def login(request):
     error = ''
@@ -111,4 +111,4 @@ def login(request):
             return response
         else:
             error = u'Incorrect login/pass'
-    return render(request, 'login.html', {'username' : username, 'password' : password})
+    return render(request, 'login.html', {'error' : error, 'username' : username, 'password' : password})
