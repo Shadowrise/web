@@ -33,28 +33,31 @@ class Answer(models.Model):
   author = models.ForeignKey(User, null=True)
 
 class LoginResult:
-  def __init__(self, success, doors, tires):
-    self.color = color
-    self.doors = doors
-    self.tires = tires
+  def __init__(self, success, sessid, err_msg):
+    self.success = success
+    self.sessid = sessid
+    self.err_msg = err_msg
   
 def m_login(username, password):
   try:
     user = User.objects.get(username=username)
   except User.DoesNotExist:
-    return False
+    return LoginResult(False, None, "User doesn't exist")
   if user.check_password(password):
-    return False
+    return LoginResult(False, None, "Incorrect password")
   user = authenticate(username=username, password=password)
   if user is None:
-    return False
-  return True
+    return return LoginResult(False, None, "Authentication failed")
+  return LoginResult(True, None, None)
   
 def m_signup(username, email, password):
   if User.objects.filter(username=username).exists():
-    return False
+    return LoginResult(False, None, "User already exists")
   user = User.objects.create_user(username, email, password)
-  user.save()
+  try:
+    user.save()
+  except Exception as e: 
+    return LoginResult(False, None, "User saving failed")
   return m_login(username, password)
 
   
