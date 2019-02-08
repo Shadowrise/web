@@ -5,9 +5,9 @@
 <h3>error: {{ error }}</h3>
 <form action="/login/" method="post">
 {% csrf_token %}
-<tr><th>Username:</th><td><input type="text" name="username" required>{{ username }}</td></tr>
-<tr><th>Email:</th><td><input type="text" name="email">{{ email }}</td></tr>
-<tr><th>Password:</th><td><input type="text" name="password">{{ password }}</td></tr>
+Username:<input type="text" name="username" required>{{ username }}</input>
+Email:<input type="text" name="email">{{ email }}</input>
+Password:<input type="text" name="password">{{ password }}</input>
 <input type="submit" value="Submit">
 </form>
 {% endblock content %}
