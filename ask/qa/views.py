@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect 
 from django.core.paginator import Paginator, EmptyPage
-from qa.models import Question, m_signup, m_login
+from qa.models import Question, m_signup, m_login, LoginResult
 from qa.forms import AskForm, AnswerForm
 from django.shortcuts import render
 
@@ -88,13 +88,13 @@ def signup(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        sessid = m_signup(username, email, password)
-        if sessid:
+        result = m_signup(username, email, password)
+        if result.success:
             response = HttpResponseRedirect('/')
-            response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
+            response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
             return response
         else:
-            error = u'Signup failed'
+            error = result.err_msg
     return render(request, 'signup.html', {'error' : error, 'username' : username, 'email' : email, 'password' : password})
 
 def login(request):
@@ -104,11 +104,11 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        sessid = m_login(username, password)
-        if sessid:
+        result = m_login(username, password)
+        if result.success:
             response = HttpResponseRedirect('/')
-            response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
+            response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
             return response
         else:
-            error = u'Incorrect login/pass'
+            error = result.err_msg
     return render(request, 'login.html', {'error' : error, 'username' : username, 'password' : password})
