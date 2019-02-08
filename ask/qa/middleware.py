@@ -1,5 +1,5 @@
 class CheckSessionMiidleware(object):
-  def process_request(request):
+  def process_request(self, request):
     try:
       sessid = request.COOKIE.get('sessid')
       session = Session.objects.get(key=sessid, expires__gt=datetime.now(),)
