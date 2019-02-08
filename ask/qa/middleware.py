@@ -1,4 +1,4 @@
-class CheckSessionMiidleware(class):
+class CheckSessionMiidleware(object):
   def process_request(request):
     try:
       sessid = request.COOKIE.get('sessid')
