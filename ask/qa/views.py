@@ -92,7 +92,7 @@ def signup(request):
         result = m_signup(request, username, email, password)
         if result.success:
             response = HttpResponseRedirect('/')
-            #response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
+            response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
             return response
         else:
             error = result.err_msg
@@ -108,7 +108,7 @@ def login(request):
         result = m_login(request, username, password)
         if result.success:
             response = HttpResponseRedirect('/')
-            #response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
+            response.set_cookie('sessid', result.sessid, expires = datetime.now() + timedelta(days=1))
             return response
         else:
             error = result.err_msg
