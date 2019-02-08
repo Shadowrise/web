@@ -43,7 +43,7 @@ def m_login(username, password):
     user = User.objects.get(username=username)
   except User.DoesNotExist:
     return LoginResult(False, None, "User doesn't exist")
-  if user.check_password(password):
+  if not user.check_password(password):
     return LoginResult(False, None, "Incorrect password")
   user = authenticate(username=username, password=password)
   if user is None:
