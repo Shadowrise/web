@@ -1,7 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect 
 from django.core.paginator import Paginator, EmptyPage
 from qa.models import Question, signup, login
-from qa.forms import AskForm, AnswerForm, SingupForm, LoginForm
+from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
 from django.shortcuts import render
 
 def paginate(request, qs):
