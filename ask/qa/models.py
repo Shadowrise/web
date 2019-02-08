@@ -47,7 +47,7 @@ def m_login(username, password):
 def m_signup(username, email, password):
   if User.objects.filter(username=username).exists():
     return False
-  user = User.objects.create_user(username,email,password)
+  user = User.objects.create_user(username, email, password)
   user.save()
-  return login(username,password)
+  return m_login(username, password)
   
