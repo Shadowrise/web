@@ -22,12 +22,3 @@ class AnswerForm(forms.Form):
     answer = Answer(**self.cleaned_data)
     answer.save()
     return answer
-
-class SignupForm(forms.Form):
-  username = forms.CharField(max_length=100)
-  email = forms.CharField(max_length=100)
-  password = forms.CharField(max_length=100)
-
-class LoginForm(forms.Form):
-  username = forms.CharField(max_length=100)
-  password = forms.CharField(max_length=100)
