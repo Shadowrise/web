@@ -91,7 +91,7 @@ def signup(request):
             error = u'Signup failed'
      return render(request, 'signup.html', {'error' : error, 'form' : SignupForm()})
 
-def signup(request):
+def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         sessid = login(form.username, form.password)
