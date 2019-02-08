@@ -32,6 +32,12 @@ class Answer(models.Model):
   question = models.ForeignKey(Question, related_name='answer_set')
   author = models.ForeignKey(User, null=True)
 
+class LoginResult:
+  def __init__(self, success, doors, tires):
+    self.color = color
+    self.doors = doors
+    self.tires = tires
+  
 def m_login(username, password):
   try:
     user = User.objects.get(username=username)
@@ -50,4 +56,5 @@ def m_signup(username, email, password):
   user = User.objects.create_user(username, email, password)
   user.save()
   return m_login(username, password)
+
   
