@@ -36,17 +36,17 @@ def m_login(username, password):
   try:
     user = User.objects.get(username=username)
   except User.DoesNotExist:
-    return false
+    return False
   if user.check_password(password):
-    return false
+    return False
   user = authenticate(username=username, password=password)
   if user is None:
-    return false
-  return true
+    return False
+  return True
   
 def m_signup(username, email, password):
   if User.objects.filter(username=username).exists():
-    return false
+    return False
   user = User.objects.create_user(username,email,password)
   user.save()
   return login(username,password)
