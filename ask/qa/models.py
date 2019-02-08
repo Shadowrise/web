@@ -38,7 +38,7 @@ class LoginResult:
     self.sessid = sessid
     self.err_msg = err_msg
   
-def m_login(username, password):
+def m_login(request, username, password):
   try:
     user = User.objects.get(username=username)
   except User.DoesNotExist:
@@ -51,7 +51,7 @@ def m_login(username, password):
   login(request, user)
   return LoginResult(True, None, None)
   
-def m_signup(username, email, password):
+def m_signup(request, username, email, password):
   if User.objects.filter(username=username).exists():
     return LoginResult(False, None, "User already exists")
   user = User.objects.create_user(username, email, password)
@@ -59,6 +59,6 @@ def m_signup(username, email, password):
     user.save()
   except Exception as e: 
     return LoginResult(False, None, "User saving failed")
-  return m_login(username, password)
+  return m_login(request, username, password)
 
   
