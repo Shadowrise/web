@@ -22,18 +22,12 @@ class AnswerForm(forms.Form):
     answer = Answer(**self.cleaned_data)
     answer.save()
     return answer
-#########################################################  
+
 class SignupForm(forms.Form):
   username = forms.CharField(max_length=100)
   email = forms.CharField(max_length=100)
   password = forms.CharField(max_length=100)
-  
-  def clean(self):
-    question_id = self.cleaned_data['question']
-    return Question.objects.get(id=int(question_id))
-  
-  def save(self):
-    question = Question(**self.cleaned_data)
-    question.save()
-    return question
-  
+
+class LoginForm(forms.Form):
+  username = forms.CharField(max_length=100)
+  password = forms.CharField(max_length=100)
