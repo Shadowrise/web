@@ -87,9 +87,9 @@ def signup(request):
             response = HttpResponseRedirect('/')
             response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
             return response
-        else
+        else:
             error = u'Signup failed'
-     return render(request, 'signup.html', {'error' : error, 'form' : SignupForm()})
+    return render(request, 'signup.html', {'error' : error, 'form' : SignupForm()})
 
 def login(request):
     if request.method == "POST":
@@ -99,6 +99,6 @@ def login(request):
             response = HttpResponseRedirect('/')
             response.set_cookie('sessid', sessid = datetime.now() + timedelta(days=1))
             return response
-        else
+        else:
             error = u'Incorrect login/pass'
-     return render(request, 'login.html', {'error' : error, 'form' : LoginForm()})
+    return render(request, 'login.html', {'error' : error, 'form' : LoginForm()})
