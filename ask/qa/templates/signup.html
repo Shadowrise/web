@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Signup</h2>
 <h3>error: {{ error }}</h3>
-<form action="/login/" method="post">
+<form action="/signup/" method="post">
 {% csrf_token %}
 Username:<input type="text" name="username" value="{{ username }}" />
 Email:<input type="text" name="email" value="{{ email }}" />
