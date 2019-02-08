@@ -32,7 +32,7 @@ class Answer(models.Model):
   question = models.ForeignKey(Question, related_name='answer_set')
   author = models.ForeignKey(User, null=True)
 
-def login(username,password):
+def login(username, password):
   try:
     user = User.objects.get(username=username)
   except User.DoesNotExist:
@@ -44,7 +44,7 @@ def login(username,password):
     return false
   return true
   
-def signup(username,email,password):
+def signup(username, email, password):
   if User.objects.filter(username=username).exists():
     return false
   user = User.objects.create_user(username,email,password)
