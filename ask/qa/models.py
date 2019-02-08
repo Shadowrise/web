@@ -48,6 +48,7 @@ def m_login(username, password):
   user = authenticate(username=username, password=password)
   if user is None:
     return LoginResult(False, None, "Authentication failed")
+  login(request, user)
   return LoginResult(True, None, None)
   
 def m_signup(username, email, password):
