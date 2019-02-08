@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage
 from qa.models import Question, m_signup, m_login, LoginResult
 from qa.forms import AskForm, AnswerForm
 from django.shortcuts import render
+from datetime import datetime, timedelta
 
 def paginate(request, qs):
     try:
