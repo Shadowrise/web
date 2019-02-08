@@ -89,7 +89,7 @@ def signup(request):
             return response
         else:
             error = u'Signup failed'
-    return render(request, 'signup.html', {'error' : error, 'form' : SignupForm()})
+    return render(request, 'signup.html', {'error' : '', 'form' : SignupForm()})
 
 def login(request):
     if request.method == "POST":
@@ -101,4 +101,4 @@ def login(request):
             return response
         else:
             error = u'Incorrect login/pass'
-    return render(request, 'login.html', {'error' : error, 'form' : LoginForm()})
+    return render(request, 'login.html', {'error' : '', 'form' : LoginForm()})
