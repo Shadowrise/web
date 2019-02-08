@@ -82,9 +82,9 @@ def ask(request):
 def signup(request):
     error = ''
     if request.method == "POST":
-        username = request.POST.Get('username')
-        email = request.POST.Get('email')
-        password = request.POST.Get('password')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         sessid = signup(username, email, password)
         if sessid:
             response = HttpResponseRedirect('/')
@@ -97,8 +97,8 @@ def signup(request):
 def login(request):
     error = ''
     if request.method == "POST":
-        username = request.POST.Get('username')
-        password = request.POST.Get('password')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         sessid = login(username, password)
         if sessid:
             response = HttpResponseRedirect('/')
