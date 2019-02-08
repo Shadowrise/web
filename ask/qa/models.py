@@ -49,7 +49,7 @@ def m_login(request, username, password):
   if user is None:
     return LoginResult(False, None, "Authentication failed")
   login(request, user)
-  return LoginResult(True, None, None)
+  return LoginResult(True, request.session.session_key, None)
   
 def m_signup(request, username, email, password):
   if User.objects.filter(username=username).exists():
